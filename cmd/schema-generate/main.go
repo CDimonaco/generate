@@ -64,5 +64,5 @@ func main() {
 		}
 	}
 
-	generate.Output(w, g, *p, *skipValidation)
+	generate.Output(w, g, *p, *skipValidation, "")
 }
