@@ -11,7 +11,7 @@ Generates Go (golang) Structs and Validation code from JSON schema.
 Install
 
 ```console
-$ go get -u github.com/a-h/generate/...
+$ go install github.com/CDimonaco/generate/...@latest
 ```
 
 or
@@ -27,6 +27,10 @@ Run
 ```console
 $ schema-generate exampleschema.json
 ```
+
+Skip marshalling and unmarshal code
+
+In order to skip the generation of marshalling and unmarshalling code, you can pass the flag -skipMarshalling
 
 # Example
 
