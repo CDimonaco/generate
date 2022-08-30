@@ -180,6 +180,12 @@ func (g *Generator) processObject(name string, schema *Schema) (typ string, err 
 		Description: schema.Description,
 		Fields:      make(map[string]Field, len(schema.Properties)),
 	}
+
+	// we are expressing a pattern of properties, so we will output a map[string]interface{}
+	if schema.PropertyNames != nil {
+		return "map[string]interface{}", nil
+	}
+
 	// cache the object name in case any sub-schemas recursively reference it
 	schema.GeneratedType = "*" + name
 	// regular properties

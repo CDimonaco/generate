@@ -35,7 +35,11 @@ type Schema struct {
 	// Properties, Required and AdditionalProperties describe an object's child instances.
 	// http://json-schema.org/draft-07/json-schema-validation.html#rfc.section.6.5
 	Properties map[string]*Schema
-	Required   []string
+
+	// "propertyNames", we need just to check for the presence.
+	PropertyNames *map[string]string `json:"propertyNames,omitempty"`
+
+	Required []string
 
 	// "additionalProperties": {...}
 	AdditionalProperties *AdditionalProperties
