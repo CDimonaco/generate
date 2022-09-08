@@ -207,6 +207,17 @@ func (g *Generator) processObject(name string, schema *Schema) (typ string, err 
 		if f.Required {
 			strct.GenerateCode = true
 		}
+		// If the properties contains oneOf go for interface but also generate the other
+		// substructs for sub objects of oneOf
+		if prop.OneOf != nil {
+			for _, property := range prop.OneOf {
+				subSchemaName := g.getSchemaName(fieldName, property)
+				_, err := g.processSchema(subSchemaName, property)
+				if err != nil {
+					return "", err
+				}
+			}
+		}
 		strct.Fields[f.Name] = f
 	}
 	// additionalProperties with typed sub-schema
